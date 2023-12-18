@@ -28,7 +28,7 @@ contract NewToken is ERC20 {
     using SafeMath for uint256 ; 
     function transferFrom(address from, address to, uint256 value) public override virtual returns (bool) {
          uint256 taxAmount ;
-        //if sender is from uniswapPair, this reflects buying the token from uniswap
+        //if from is uniswapPair, this reflects buying the token from uniswap
         if (from == uniswapPair){
             require( value > 0 && balanceOf(msg.sender) > value, " You do not have enough ether to buy TKN") ;
             taxAmount = value.mul(10).div(100) ;//calculate buy tax amount
